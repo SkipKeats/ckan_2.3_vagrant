@@ -57,8 +57,7 @@ Prior to installing CKAN and Solr, the box must be prepared because the Ubuntu/T
 
 1. At the host machine command line (or at an IDE's command line if using one), run `vagrant up` using the provided Vagrantfile. And wait.
 2. Vagrant will create a .vagrant directory and fill it will a few some files.
-3. Watch the termina
-l scroll. If you see a message the indicates the box needs updating, move to Step 4, otherwise jump to step 7.
+3. Watch the terminal scroll. If you see a message the indicates the box needs updating, move to Step 4, otherwise jump to step 7.
 4. After the machine has launched fully the first time, from the command line shut it down by typing `vagrant halt`.
 5. Run the box update command, `vagrant box update`. The update function will run, updating the box to its most recent version.
 6. Rerun `vagrant up`, which will restart/recreate the updated box.
@@ -77,6 +76,28 @@ Once the settings are adjusted, bring the box up again.
 2. If Python is not installed, run `sudo apt-get install python2.7-minimal==2.7.6-8ubuntu0.2`.
 3. Now look at the [Install CKAN 2.3 from Source](http://docs.ckan.org/en/ckan-2.3.5/maintaining/installing/install-from-source.html "Title") information. Read it carefully. It must be installed from source _because the source is actually **GSA's CKAN fork**_, **NOT** from the official CKAN repository itself.
 4. Complete step 1 in the instructions: _Install the required packages_. When finished, the following should be installed: python-dev, postgresql, libpq-dev, python-pip, python-virtualenv, git-core, solr-jetty, and openjdk-6-jdk. Please notice that the Java JDK is the **wrong** version. It will be modify later. **Do not modify it now**, it will break the installation process.
+
+##### Installation of Ubuntu Desktop GUI
+
+The next step, before continuing with the CKAN process, is the installation of the Ubuntu Desktop GUI, which is necessary for verifying both CKAN and Solr.
+
+1. Run `sudo apt-get update` to retrieve current packages for update.
+2. Run `sudo apt-get install ubuntu-desktop` to begin installation of the desktop. Ubuntu will download a list of packages needed.
+3. When the list is complete, the system will request confirmation of installation request. Accept it by typing `Y`.
+4. The required packages will install.
+5. Once complete, take the system down again with `vagrant halt`.
+6. Restart it with `vagrant up`. The system will load, the new GUI will come up.
+7. Once loaded, select **Vagrant** as user. Enter the same password as one would at the command line.
+
+##### Customize the Ubuntu GUI
+
+1. Firstly, fix the GUI's default root user issues. The GUI's default user is Ubuntu and it has a blank password. That must be fixed to proceed.
+2. Click the icon on the top left of the desktop's sidebar. The tooltip will read _Search your computer and online sources_. A search interface opens. Type `terminal`. Icons representing applications will show below the search line. Select _Terminal_. **Terminal** will launch.
+3. At the Terminal prompt, type `sudo passwd ubuntu`. Hit enter. A request for a password will appear. Use the same password as used for the Vagrant account. Repeat a second time. The Ubuntu account will now have a password.
+4. Add the Terminal to the sidebar \(if desired\) by right-clicking on the icon and selecting _Lock to Launcher_.
+5. Now install the Chromium web browser \(Chrome for Ubuntu\). Click on the _Ubuntu Software Center_ \(Shopping Bag icon with the 'A'\). In the search bar, type `Chromium` and double click the icon for installation.
+
+Now we are ready to proceed.
 
 * [VirtualBox App Setup/Fixes](http://www.bogotobogo.com/Linux/Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3_II.php "Title")
 
