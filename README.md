@@ -32,13 +32,23 @@ Why the Dirty? Because a box must be built out from a basic Vagrant box to one t
 
 #### Differences between CKAN Development and Production
 
-Differences exist between 
+Differences exist between Development, Testing, and Production, as shown in the table below. Plugins and extensions are not included in the table because 
 
-| Development | Testing | Production |
-|-------------|---------|------------|
-| Ubuntu 14.04 LTS (Trusty) - 64 bit | Same | Same | 
-| Python 2.7.6| Same    | Same       |
-|
+##### Environment Requirements
+
+Server/Software | Development | Testing | Production |
+|---------------|-------------|---------|------------|
+| **Server** | Ubuntu 14.04 LTS (Trusty) - 64 bit | Same | Same |
+| **Language** | Python v 2.7.6| Same    | Same       |
+| **Java Runtime** | Java v 1.7.0_171; OpenJDK Runtime Env \(IcedTea 2.6.13\) \(7u171-2.6.13-0ubuntu0.14.04.2\) | Same | Same |
+| **Web Server** | Paster | Paster | Apache 2.4.7 |
+| **Java Server** | Eclipse Jetty v 6 | Eclipse Jetty 6 | Apache Tomcat 6 |
+| **Search Server** | Solr v 4.2.1 | Same | Same |
+| **NoSQL Server** | Redis v 2.8.4 | Same | Same |
+| **SQL Server** | Postgres SQL v 9.3 | Same | Same |
+| **DMS** | CKAN 2.3 | Same | Same |
+
+
 
 * [General CKAN 2.3 Information](http://docs.ckan.org/en/ckan-2.3.5/ "Title")
 * [Install CKAN 2.3 from Source](http://docs.ckan.org/en/ckan-2.3.5/maintaining/installing/install-from-source.html 
