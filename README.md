@@ -28,7 +28,17 @@ Save the file and type `vagrant up`. Once the box loads, the virtual machine sho
 
 ### The Dirty
 
-Why the Dirty? Because a box must be built out from a basic Vagrant box to one that holds the glory that is CKAN. The following process details what must be done to ready a box.
+Why the Dirty? Because a box must be built out from a basic Vagrant box to one that holds the glory that is CKAN. The following process details what must be done to ready a box. This process assumes the Vagrant box in use is [Ubuntu/Trusty64](https://app.vagrantup.com/ubuntu/boxes/trusty64 "Title"), which pulls from [Vagrant Box Search](https://app.vagrantup.com/boxes/search "Title") directly.
+
+#### Differences between CKAN Development and Production
+
+Differences exist between 
+
+| Development | Testing | Production |
+|-------------|---------|------------|
+| Ubuntu 14.04 LTS (Trusty) - 64 bit | Same | Same | 
+| Python 2.7.6| Same    | Same       |
+|
 
 * [General CKAN 2.3 Information](http://docs.ckan.org/en/ckan-2.3.5/ "Title")
 * [Install CKAN 2.3 from Source](http://docs.ckan.org/en/ckan-2.3.5/maintaining/installing/install-from-source.html 
