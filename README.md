@@ -70,14 +70,14 @@ The settings are specialized for this project. A video was created to show what 
 
 Once the settings are adjusted, bring the box up again.
 
-##### Begin Installation of Packages Required by CKAN
+#### Begin Installation of Packages Required by CKAN
 
 1. Verify that Python 2.7.6 is installed in the default box by typing: `python --version`. It should return Python 2.7.6, which is the required version and the version that should be installed by default.
 2. If Python is not installed, run `sudo apt-get install python2.7-minimal==2.7.6-8ubuntu0.2`.
 3. Now look at the [Install CKAN 2.3 from Source](http://docs.ckan.org/en/ckan-2.3.5/maintaining/installing/install-from-source.html "Title") information. Read it carefully. It must be installed from source _because the source is actually **GSA's CKAN fork**_, **NOT** from the official CKAN repository itself.
-4. Complete step 1 in the instructions: _Install the required packages_. When finished, the following should be installed: python-dev, postgresql, libpq-dev, python-pip, python-virtualenv, git-core, solr-jetty, and openjdk-6-jdk. Please notice that the Java JDK is the **wrong** version. It will be modify later. **Do not modify it now**, it will break the installation process.
+4. Complete Step 1 in the instructions: _Install the required packages_. When finished, the following should be installed: python-dev, postgresql, libpq-dev, python-pip, python-virtualenv, git-core, solr-jetty, and openjdk-6-jdk. Please notice that the Java JDK is the **wrong** version. It will be modify later. **Do not modify it now**, it will break the installation process.
 
-##### Installation of Ubuntu Desktop GUI
+#### Installation of Ubuntu Desktop GUI
 
 The next step, before continuing with the CKAN process, is the installation of the Ubuntu Desktop GUI, which is necessary for verifying both CKAN and Solr.
 
@@ -99,5 +99,55 @@ The next step, before continuing with the CKAN process, is the installation of t
 
 Now we are ready to proceed.
 
-* [VirtualBox App Setup/Fixes](http://www.bogotobogo.com/Linux/Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3_II.php "Title")
+##### Replace Java JDK 6 with 7
 
+While it may seem odd, the replacement was delayed because swapping the JDKs prior to desktop installation seems to cause unexpected issues. It works better from within the GUI.
+
+Read [this article](https://askubuntu.com/questions/150057/how-can-i-tell-what-version-of-java-i-have-installed "Title") before proceeding.
+
+1. Show which versions are installed: `update-java-alternatives -l`.
+2. Run in Terminal `apt-get -s remove openjdk-6-\* icedtea-6-\*` to show dependencies and what will eventually be removed.
+3. Then install the openJDK 7 package: `sudo apt-get install openjdk-7-jdk`. [Openjdk-7-jdk details](https://launchpad.net/ubuntu/+source/openjdk-7/7u171-2.6.13-0ubuntu0.14.04.2 "Title").
+4. Next run: `sudo apt-get remove openjdk-6-\* icedtea-6-\*`, which will remove version 6.
+5. Verify the removal of version 6 by showing which versions remain: `update-java-alternatives -l`.
+6. Finally verify that the new version is available for use: `java --version`.
+
+Java is now the version required for the Production server.
+
+##### Install the Virtual Box Guest Additions within the Ubuntu Desktop
+
+The guest extensions are important. They allow copying and drag and drop between the virtual box and the host desktop. Follow these instructions to setup the guest extensions for your particular host system:
+
+* [MacOS](http://www.bogotobogo.com/Linux/Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3_II.php "Title") **Note:** Make certain the VirtualBox software is up-to-date _before_ proceding.
+* [Windows/Linux](https://www.howtogeek.com/howto/2845/install-guest-additions-to-windows-and-linux-vms-in-virtualbox/ "Title")
+
+Once installation is finished, halt the virtual box and bring it back up. Once restored, the additions should be functional.
+
+#### Return to the CKAN Setup instructions
+
+1. In Terminal, resume installation at Step 2: _Install CKAN into a Python virtual environment_. Continue until Step 5, _Setup Solr_, section 1.
+2. In a slight modification of the instructions, open Chromium and view the Jetty homepage: [http://localhost:8983/](http://localhost:8983/). If for some reason `localhost` fails, use the IP `127.0.0.1:8983`. The Jetty page should load.
+3. Attempting to view the Solr welcome page, however, will result in the error show below in the blockquote:
+4. Why? Because the Java update broke the JSP connectivity. Read and [follow the instructions](https://stackoverflow.com/questions/32047288/ckan-solr-jsp-support-not-configured "Title") to resolve the error.
+5. Solr's welcome page should now load.
+6. With the Solr error resolved, continue on to Step 2, section 2.
+
+> `HTTP ERROR 500`
+> `Problem accessing /solr/index.jsp. Reason:`
+> `JSP support not configured`
+> `Powered by Jetty://`
+
+
+### Install Finished
+
+If CKAN and Solr are both working, Stage 1 is complete.
+
+#### Running the development CKAN instance again after restarting the Virtual Box
+
+Remember that the CKAN development instance runs within a Python virtual environment, which means that the environment must be activated and the server restarted _before_ anything can be seen in the browser or done in either the browser or command line in the development instance.
+
+The commands from within Terminal at the command prompt are as follows:
+
+1. `. /usr/lib/ckan/default/bin/activate`
+2. `cd /usr/lib/ckan/default/src/ckan`
+3. `paster serve /etc/ckan/default/development.ini`
