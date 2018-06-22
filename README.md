@@ -161,3 +161,29 @@ To create a backup of the VM environment, from within the Oracle VM VirtualBox M
 **Important!!!** This process will _only_ work if a copy of the needed VirtualBox VM exists. The box will exist as a file: **ApplianceName.ova**. If such exported applicance does not exist, this procedure _will not work_. Additionally, the recovery assumes a pre-existing .vagrant structure exists as shown below:
 
 ![Vagrant directory structure diagramme](ckan_2.3_vagrant-filetree.png "Title Text 1")
+
+**NOTE:** The directory above named _default_ may have a different name if the Vagrantfile has it set differently, e.g., `config.vm.define "someothername"`.
+
+This process works from the _Host_ machine' command line:
+
+1. Make certain the desired machine is visable in the **Oracle VM VirtualBox Manager**.
+
+    1. If not, import it: **File > Import Appliance** and follow the instructions.
+    2. If it is, but it is corrupted, remove it and then follow sub step 1 above.
+    3. If the machine is A-OK, but disassociated from the Vagrant file, continue.
+
+2. At the command line, type `VBoxManage list vms`. A list of available machines will print to the screen.
+3. Look for the name of the broken machine. To the right of the name, its ID number will show, e.g., _"Trusty 64 - U14.04" {83e7e24f-2aa3-4fba-ba95-3585201c8f07}"_. The ID is the string between the braces.
+4. Change directories. In Vagrant version 2.x and above, it is in the location shown above. At the prompt type: `cd .vagrant/machines/default/virtualbox`.
+5. Run `ls -alg` to see files and their properties.
+6. Using text editor of choice \(VI, VIM, EMACS, NANO, whatever\), open the _action_provision_ file and set its content to: 1.5:{id}, replacing {id} with the id found in step 3. Save the file, close the editor, and return to the command line.
+7. Using the editor again, open the _id_ and replace id found therein with the id obtained in step 3. Save the file, close the editor, and return to the command line.
+8. Run `vagrant up`, which will begin to bring up the machine. In all likelihood, the machine will suffer a SSH authentication failure. Let the process run its course. An error message will generate, declaring a SSH failure. Panic not. The command line will return. The VM itself, however, should load.
+9. Still on the _host_ machine, type: `vagrant ssh`. When the password is requested, enter the Vagrant password. Once accepted, the command line will change to the guest VM's prompt, _vagrant@machinename_.
+10. In a browser on the host machine, [obtain the insecure Vagrant public key](https://github.com/hashicorp/vagrant/blob/master/keys/vagrant.pub "Title") by copying it to the clipboard.
+11. Return to the command prompt. Type `cd .ssh`.
+12. Now in the SSH directory, type `ls` and find the _authorized_keys_ file.
+13. Using an text editor, open the file and replace its content with the content copied from the clipboard. Save the file, close the editor, and return to the command line.
+14. Exit the guest machine command line by clicking `CTRL + D` keys together.
+15. At the host command line again, type `vagrant reload`.
+16. Vagrant should halt the machine, destroy it, and then recreate it. Once restarted, the machine should be up and running in full.
