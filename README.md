@@ -20,7 +20,7 @@ Two methods exist for this arrangement, the Quick and the Dirty. The Quick is co
 
 ### The Quick
 
-This method requires changing only the name of the preferred box in the Vagrant file, but the box must be a pre-configured for a CKAN stage: Development Testing (_CKAND_), Plugin and Extension Testing (_CKANPE_), or Production Testing (_CKANP_).
+This method requires changing only the name of the preferred box in the Vagrant file, but the box must be a pre-configured for a CKAN stage: Development Testing (_CKAN23D_), Development Tools Installed (_CKAN23T_), Plugin and Extension Testing (_CKANP23E_), or Production Testing (_CKAN23P_).
 
 If using a pre-created CKAN-prepared Vagrant Box, use the included Vagrantfile, but edit line 6, replacing `config.vm.box = "ubuntu/trusty64"` with `config.vm.box = "Name of box needed"` where **Name of box needed** matches one of the boxed noted above.
 
@@ -116,7 +116,7 @@ Java is now the version required for the Production server.
 
 ##### Install the Virtual Box Guest Additions within the Ubuntu Desktop
 
-The guest extensions are important. They allow copying and drag and drop between the virtual box and the host desktop. Follow these instructions to setup the guest extensions for your particular host system:
+The [Virtual Box Guest Additions](https://www.virtualbox.org/manual/ch04.html "Title") are important. They allow copying and drag and drop between the virtual box and the host desktop. Follow these instructions to setup the guest extensions for your particular host system:
 
 * [MacOS](http://www.bogotobogo.com/Linux/Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3_II.php "Title") **Note:** Make certain the VirtualBox software is up-to-date _before_ proceding.
 * [Windows/Linux](https://www.howtogeek.com/howto/2845/install-guest-additions-to-windows-and-linux-vms-in-virtualbox/ "Title")
