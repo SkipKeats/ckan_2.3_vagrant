@@ -160,9 +160,9 @@ To create a backup of the VM environment, from within the Oracle VM VirtualBox M
 
 **Important!!!** This process will _only_ work if a copy of the needed VirtualBox VM exists. The box will exist as a file: **ApplianceName.ova**. If such exported applicance does not exist, this procedure _will not work_. Additionally, the recovery assumes a pre-existing .vagrant structure exists as shown below:
 
-`.vagrant
-    | machines
-        | default
+`.vagrant`
+`    | machines`
+`        | default`
             | virtualbox
                 |- action_provision
                 |- action_set_name
