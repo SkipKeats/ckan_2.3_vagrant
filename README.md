@@ -184,6 +184,15 @@ This process works from the _Host_ machine' command line:
 11. Return to the command prompt. Type `cd .ssh`.
 12. Now in the SSH directory, type `ls` and find the _authorized_keys_ file.
 13. Using an text editor, open the file and replace its content with the content copied from the clipboard. Save the file, close the editor, and return to the command line.
-14. Exit the guest machine command line by clicking `CTRL + D` keys together.
+14. Exit the guest machine command lineby typing `exit`.
 15. At the host command line again, type `vagrant reload`.
 16. Vagrant should halt the machine, destroy it, and then recreate it. It will replace the insecure key. Once restarted, the machine should be up and running in full.
+
+## Vagrant Box Creation Process
+
+First off, boxes are stowed as shown below at download:
+
+| OS | Path Location |
+|----|---------------|
+| macOS or Linux | ~/.vagrant.d/boxes |
+| Windows | C:/Users/USERNAME/.vagrant.d/boxes
