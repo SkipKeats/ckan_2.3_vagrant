@@ -186,4 +186,4 @@ This process works from the _Host_ machine' command line:
 13. Using an text editor, open the file and replace its content with the content copied from the clipboard. Save the file, close the editor, and return to the command line.
 14. Exit the guest machine command line by clicking `CTRL + D` keys together.
 15. At the host command line again, type `vagrant reload`.
-16. Vagrant should halt the machine, destroy it, and then recreate it. Once restarted, the machine should be up and running in full.
+16. Vagrant should halt the machine, destroy it, and then recreate it. It will replace the insecure key. Once restarted, the machine should be up and running in full.
