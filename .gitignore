@@ -1,2 +1,5 @@
 blobs.sh
 branches.sh
+
+.vagrant/
+vagrant_boxes/

@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# CKAN23D - Development CKAN 2.3 Environment in basic initial mode
+# CKAN23T - Development CKAN 2.3 Environment in basic initial mode
 Vagrant.configure("2") do |config|
     # The most common configuration options are documented and commented below.
     # For a complete reference, please see the online documentation at
@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 
     # Every Vagrant development environment requires a box. You can search for
     # boxes at https://vagrantcloud.com/search.
-    config.vm.box = "ckan23d"
+    config.vm.box = "ckan23t"
   
     # Disable automatic box update checking. If you disable this, then
     # boxes will only be checked for updates when the user runs
@@ -21,19 +21,16 @@ Vagrant.configure("2") do |config|
     config.hostmanager.manage_host = true
     config.hostmanager.ignore_private_ip = false
     config.hostmanager.include_offline = true
-    config.vm.hostname = 'ckan.local'
-    config.vm.network :private_network, ip: '192.168.10.95'
-  
+    config.vm.hostname = 'ckan23t.local'
+    config.vm.network :private_network, ip: '192.168.10.92'
+
     # Box configuration changes
     config.vm.provider "virtualbox" do |vb|
       # Display the VirtualBox GUI when booting the machine
       vb.gui = true
-  
+
       # Edit the default box name
       vb.name = "T64: CKAN23T"
-  
-      # Customize the amount of memory on the VM:
-      vb.memory = "4096"
     end
   end
   
