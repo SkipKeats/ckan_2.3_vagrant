@@ -160,7 +160,7 @@ To create a backup of the VM environment, from within the Oracle VM VirtualBox M
 
 **Important!!!** This process will _only_ work if a copy of the needed VirtualBox VM exists. The box will exist as a file: **ApplianceName.ova**. If such exported applicance does not exist, this procedure _will not work_. Additionally, the recovery assumes a pre-existing .vagrant structure exists as shown below:
 
-![Vagrant directory structure diagramme](ckan_2.3_vagrant-filetree.png "Title Text 1")
+![Vagrant directory structure diagramme](documentation_aids/ckan_2.3_vagrant-filetree.png "Title Text 1")
 
 **NOTE:** The directory above named _default_ may have a different name if the Vagrantfile has it set differently, e.g., `config.vm.define "someothername"`.
 
@@ -196,3 +196,25 @@ First off, boxes are stowed as shown below at download:
 |----|---------------|
 | macOS or Linux | ~/.vagrant.d/boxes |
 | Windows | C:/Users/USERNAME/.vagrant.d/boxes
+
+## Install Redis
+
+[Redis installation instructions](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis "Title")
+
+[Redis Releases](http://download.redis.io/releases/ "Title")
+
+Redis Server Commands
+
+`sudo service redis_6379 start`
+
+`sudo service redis_6379 stop`
+
+Redis port: 6379
+Redis configuration file path: /etc/redis/6379.conf
+Redis log file: /var/log/redis_6379.log
+Data directory: /var/lib/redis/6379
+Executable path: /usr/local/bin/redis-server
+
+## CKAN Extensions
+
+Harvest: Installed here -- /home/vagrant/ckan/lib/default/src/ckanext-harvest

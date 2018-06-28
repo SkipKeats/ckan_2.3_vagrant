@@ -21,8 +21,8 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
-  config.vm.hostname = 'ckan.local'
-  config.vm.network :private_network, ip: '192.168.10.90'
+  config.vm.hostname = 'ckan23d.local'
+  config.vm.network :private_network, ip: '192.168.10.91'
 
   # Box configuration changes
   config.vm.provider "virtualbox" do |vb|
@@ -31,8 +31,5 @@ Vagrant.configure("2") do |config|
 
     # Edit the default box name
     vb.name = "T64: CKAN23D"
-
-    # Customize the amount of memory on the VM:
-    vb.memory = "4096"
   end
 end
